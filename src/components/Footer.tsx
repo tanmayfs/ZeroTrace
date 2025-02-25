@@ -4,39 +4,59 @@ import {
   Stack,
   Text,
   Link,
+  useColorModeValue,
   Icon,
+  HStack,
 } from '@chakra-ui/react'
-import { FaTwitter, FaGithub, FaLinkedin } from 'react-icons/fa'
-import { Link as RouterLink } from 'react-router-dom'
+import { FaTwitter, FaGithub, FaLinkedin } from 'react-icons/fa6'
 
 export default function Footer() {
   return (
-    <Box bg="gray.900" color="white">
+    <Box
+      as="footer"
+      bg={useColorModeValue('gray.900', 'gray.900')}
+      color={useColorModeValue('gray.400', 'gray.400')}
+      position="relative"
+      zIndex={2}
+    >
       <Container
         as={Stack}
-        maxW={'7xl'}
-        py={10}
-        spacing={8}
-        justify={'center'}
-        align={'center'}>
-        <Stack direction={'row'} spacing={6}>
-          <Link as={RouterLink} to="/">Home</Link>
-          <Link as={RouterLink} to="/services">Services</Link>
-          <Link as={RouterLink} to="/about">About</Link>
-          <Link as={RouterLink} to="/contact">Contact</Link>
+        maxW="7xl"
+        py={8}
+        spacing={4}
+        justify="center"
+        align="center"
+      >
+        <Stack direction="row" spacing={6}>
+          <Link href="/home">Home</Link>
+          <Link href="/services">Services</Link>
+          <Link href="/about">About</Link>
+          <Link href="/contact">Contact</Link>
         </Stack>
-        <Stack direction={'row'} spacing={6}>
-          <Link href={'#'} isExternal>
-            <Icon as={FaTwitter} w={6} h={6} _hover={{ color: 'accent.400' }} />
+        <HStack spacing={6}>
+          <Link href="https://twitter.com" isExternal>
+            <Icon as={FaTwitter} w={5} h={5} />
           </Link>
-          <Link href={'#'} isExternal>
-            <Icon as={FaGithub} w={6} h={6} _hover={{ color: 'accent.400' }} />
+          <Link href="https://github.com" isExternal>
+            <Icon as={FaGithub} w={5} h={5} />
           </Link>
-          <Link href={'#'} isExternal>
-            <Icon as={FaLinkedin} w={6} h={6} _hover={{ color: 'accent.400' }} />
+          <Link href="https://linkedin.com" isExternal>
+            <Icon as={FaLinkedin} w={5} h={5} />
           </Link>
-        </Stack>
-        <Text> {new Date().getFullYear()} ZeroTrace. All rights reserved</Text>
+        </HStack>
+        <Text pt={2}> {new Date().getFullYear()} ZeroTrace. All rights reserved</Text>
+        <Text fontSize="sm" color="gray.500">
+          Developed by{' '}
+          <Link
+            href="https://fourslash.com"
+            isExternal
+            color="accent.400"
+            _hover={{ color: 'accent.300' }}
+          >
+            Fourslash
+          </Link>
+          {' '}co-assisted by AI
+        </Text>
       </Container>
     </Box>
   )
